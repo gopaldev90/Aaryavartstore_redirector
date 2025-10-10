@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head><title>Run JS</title></head>
+<head>
+  <title>Redirecting...</title>
+</head>
 <body>
-    <h1>Hello Bharat</h1>
-    <script>
-        alert("Your JS is running!");
-    </script>
+  <h1>Hello Bharat 🚩</h1>
+
+  <script>
+    // Fetch from your Firebase Realtime Database
+    fetch('https://stockust-6605464697688432ekpv-default-rtdb.firebaseio.com/.json')
+      .then(response => response.json())
+      .then(data => {
+        alert("All data:", data);
+        // Access "Addresss" key
+        const key = "Addresss";
+
+        if (data[key]) {
+          // If Addresss is a direct URL string
+          if (typeof data[key] === "string") {
+            window.location.href = data[key];
+          }
+
+          // If Addresss contains nested data like { link: "https://example.com" }
+          else if (data[key].link) {
+            window.location.href = data[key].link;
+          }
+
+          // Otherwise show content in console
+          else {
+            console.log("Addresss exists but has no link:", data[key]);
+          }
+        } else {
+          console.log("Key not found!");
+        }
+      })
+      .catch(err => console.error("Error:", err));
+  </script>
 </body>
 </html>
