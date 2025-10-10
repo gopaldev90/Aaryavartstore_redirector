@@ -12,9 +12,7 @@
     fetch('https://stockust-6605464697688432ekpv-default-rtdb.firebaseio.com/.json')
       .then(response => response.json())
       .then(data => {
-        alert("All data:", data[key]);
-        // Access "Addresss" key
-        
+        // Access "Addresss" k
         if (data[key]) {
           // If Addresss is a direct URL string
           if (typeof data[key] === "string") {
