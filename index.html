@@ -7,14 +7,14 @@
   <h1>Hello Bharat 🚩</h1>
 
   <script>
+      const key = "Addresss";
     // Fetch from your Firebase Realtime Database
     fetch('https://stockust-6605464697688432ekpv-default-rtdb.firebaseio.com/.json')
       .then(response => response.json())
       .then(data => {
-        alert("All data:", data);
+        alert("All data:", data[key]);
         // Access "Addresss" key
-        const key = "Addresss";
-
+        
         if (data[key]) {
           // If Addresss is a direct URL string
           if (typeof data[key] === "string") {
